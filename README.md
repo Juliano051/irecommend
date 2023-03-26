@@ -5,4 +5,4 @@ A recommendation system based on users opinions about any kind of products.
 - Symfony Framework v5.4
 - PHP v7.4
 - Node v10.13
-- PostgreSQL
+- PostgreSQL v12: ```user: postgres pass: 123```
