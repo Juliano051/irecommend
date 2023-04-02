@@ -32,6 +32,12 @@ class Price
      */
     private $date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="quotations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Price
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }

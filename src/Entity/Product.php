@@ -34,9 +34,15 @@ class Product
      */
     private $prices;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Recomendation::class, mappedBy="product")
+     */
+    private $recomendations;
+
     public function __construct()
     {
         $this->prices = new ArrayCollection();
+        $this->recomendations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,6 +98,36 @@ class Product
             // set the owning side to null (unless already changed)
             if ($price->getProduct() === $this) {
                 $price->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Recomendation>
+     */
+    public function getRecomendations(): Collection
+    {
+        return $this->recomendations;
+    }
+
+    public function addRecomendation(Recomendation $recomendation): self
+    {
+        if (!$this->recomendations->contains($recomendation)) {
+            $this->recomendations[] = $recomendation;
+            $recomendation->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecomendation(Recomendation $recomendation): self
+    {
+        if ($this->recomendations->removeElement($recomendation)) {
+            // set the owning side to null (unless already changed)
+            if ($recomendation->getProduct() === $this) {
+                $recomendation->setProduct(null);
             }
         }
 
