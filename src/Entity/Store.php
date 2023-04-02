@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
+use App\Repository\StoreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ProductRepository::class)
+ * @ORM\Entity(repositoryClass=StoreRepository::class)
  */
-class Product
+class Store
 {
     /**
      * @ORM\Id
@@ -27,10 +27,10 @@ class Product
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $code;
+    private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity=Price::class, mappedBy="product")
+     * @ORM\OneToMany(targetEntity=Price::class, mappedBy="store")
      */
     private $prices;
 
@@ -56,14 +56,14 @@ class Product
         return $this;
     }
 
-    public function getCode(): ?string
+    public function getAddress(): ?string
     {
-        return $this->code;
+        return $this->address;
     }
 
-    public function setCode(?string $code): self
+    public function setAddress(?string $address): self
     {
-        $this->code = $code;
+        $this->address = $address;
 
         return $this;
     }
@@ -80,7 +80,7 @@ class Product
     {
         if (!$this->prices->contains($price)) {
             $this->prices[] = $price;
-            $price->setProduct($this);
+            $price->setStore($this);
         }
 
         return $this;
@@ -90,8 +90,8 @@ class Product
     {
         if ($this->prices->removeElement($price)) {
             // set the owning side to null (unless already changed)
-            if ($price->getProduct() === $this) {
-                $price->setProduct(null);
+            if ($price->getStore() === $this) {
+                $price->setStore(null);
             }
         }
 
