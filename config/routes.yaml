@@ -1,3 +1,3 @@
-app_product:
+app_product_index:
   path: /product
   controller: App\Controller\ProductController::index
