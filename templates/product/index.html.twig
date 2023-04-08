@@ -3,6 +3,9 @@
 {% block title %}Product index{% endblock %}
 
 {% block body %}
+<a href="{{ path('hwi_oauth_service_redirect', {'service': 'google' }) }}">
+    <span>Login with Google</span>
+</a>
     <h1>Product index</h1>
 
     <table class="table">

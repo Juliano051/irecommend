@@ -20,6 +20,6 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
     hwi_oauth.user.provider.entity:
-        class: HWI\Bundle\OAuthBundle\Security\Core\User\OauthUserProvider
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

@@ -6,7 +6,8 @@ hwi_oauth:
     # set then the user will be redirected to the original resource that they requested, or
     # the base address if no resource was requested.  This is similar to the behaviour of
     # [target_path_parameter for form login](https://symfony.com/doc/5.4/security/form_login.html).
-    target_path_parameter: _callback
+    # app_product_index
+    target_path_parameter: app_product_index    
 
     # an optional setting to use the HTTP REFERER header to be used in case no
     # previous URL was stored in the session (i.e. no resource was requested).
@@ -30,11 +31,11 @@ hwi_oauth:
             options:
                 display: popup
                 csrf: true
-        gmail:
+        google:
             type:                google
             client_id:           '%env(GMAIL_ID)%'
             client_secret:       '%env(GMAIL_SECRET)%'
-            scope:               "email"
+            scope:               "openid profile email"
             options:
                 display: popup
                 csrf: true
